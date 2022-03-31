@@ -15,7 +15,7 @@ public class Main{
 public static void main(String[] args) {
   Scanner sc = new Scanner(System.in);
   int n = sc.nextInt();
-  for (int div = 2 ; div*div <= n ; div++) {
+  for (int div = 2 ; div*div <= n ; div++) {//looping till sqrt(n)
       while( n%div == 0){
 
            n = n/div;
@@ -25,7 +25,7 @@ public static void main(String[] args) {
       }
   }
 
-  if ( n != 1) {
+  if ( n != 1) {// for number like 46 there will be left 23 factor so printing leftout 23
       System.out.print(n);
   }  
  }
