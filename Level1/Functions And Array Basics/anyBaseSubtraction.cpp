@@ -31,7 +31,7 @@ int getDifference(int b, int n1, int n2){
         n2 = n2 / 10;
         
         int d = 0;
-        d2 + d2 + carry ;
+        d2 = d2 + carry ;
 
         if ( d2 >= d1) {
            
