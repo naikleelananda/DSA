@@ -1,56 +1,62 @@
-#include<iostream>
-#include<vector>
-
+//sum of two array add digit wise in another array :)
+#include<bits/stdc++.h>
 using namespace std;
 int main() {
+    int n1,n2;
+    cin>>n1;
+    //taking first array input 
 
-    int m;
-    cin>>m;
-    vector<int> arr1(m);
-    for(int i=0 ; i<m ; i++){
-        cin>>arr1[i];
+    int* a1 = new int[n1];
+    for ( int i=0 ; i<n1 ; i++){
+        cin>>a1[i];
     }
 
-    int n;
-    cin>>n;
-    vector<int> arr2(n);
-    for(int i=0 ; i<n ;i++) {
-        cin>>arr2[i];
+    cin>>n2;
+    //taking second array input 
+    int* a2 = new int[n2];
+
+    for ( int i=0 ; i<n2 ; i++){
+        cin>>a2[i];
     }
-   int ptr1 = arr1.size()-1;
-   int ptr2 = arr2.size()-1;
+    // now finding max array for ans array
+    int maxi = max(n1 , n2);
+    int* ans = new int[maxi];
 
-   vector <int> ans ;
-   int carry = 0;
+    //i and j pointers and k pointer for ans array
+    int i = n1-1;
+    int j = n2-1;
+    int k = maxi-1;
+    
+    int carry = 0;
+    while ( k >= 0){
+        int sum = carry;
 
-   while (ptr1 >= 0 || ptr2 >= 0 || carry > 0 ){
-         int sum = arr1[ptr1] + arr2[ptr2] + carry ;
-         int d ;
-         if( sum < 10){
-             d = sum;
-         }
-         else{
-             d = sum % 10 ;
-             carry = sum / 10 ;
-         }
-         ans.push_back(d);
-         ptr1--;
-         ptr2--;
-   } 
-   while (carry > 0)
-   {
-       int d = carry % 10;
-       ans.push_back(d);
-       carry = carry/10;
-   }
-   if(carry > 0){
-       ans.push_back(carry);
-   }
-   
+        //this wont work when i or j negetive so int sum = a1[i] + a2[j] + carry ;
+        if( i >= 0){
+            sum += a1[i];
+        }
+        if( j >= 0){
+            sum += a2[j];//those case handled ;)
+        }
 
-   for( int i=ans.size()-1 ; i>=0; i--) {
-       cout<<ans[i]<<" ";
-   }
- 
+        int q = sum / 10 ; //quotient 
+        int r = sum % 10 ; //remainder
+        ans[k] = r ;
+        carry = q;
+        i--;
+        k--;
+        j--;
 
+    }
+    if( carry != 0){
+        cout<<carry<<endl;
+    }
+
+    //printing ans array 
+    for( int i=0 ; i<maxi ; i++) {
+        cout<<ans[i]<<endl;
+    }
+  
+
+    return 0;
 }
